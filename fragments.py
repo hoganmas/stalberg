@@ -6,6 +6,11 @@ from trans import *
 
 
 class Fragment:
+    def __init__(self, quadrant=0, transform=0) -> None:
+        self.verts = self.verts @ transforms[transform].T
+        self.verts += 2 * positions[quadrant, :]
+
+
     def draw(self, ax):        
         collection = [
             self.verts[poly, :] for poly in self.polys
@@ -14,12 +19,8 @@ class Fragment:
         ax.add_collection3d(Poly3DCollection(collection))
 
 
-
-
-
 class DentedVexUp(Fragment):
     def __init__(self, quadrant=0, transform=0) -> None:
-        super().__init__()
 
         self.verts = np.array([
             [1, 1, 0],
@@ -30,11 +31,11 @@ class DentedVexUp(Fragment):
             [-1, 1, 0]
         ], dtype=float)
 
-        self.verts = self.verts @ transforms[transform].T
 
         self.polys = [
             [0, 1, 2, 4, 5],
             [2, 3, 4]
         ]
 
-        self.verts += 2 * positions[quadrant, :]
+        super().__init__(quadrant=quadrant, transform=transform)
+
