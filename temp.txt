@@ -1,0 +1,19 @@
+========================
+Definitive Equiv Classes
+========================
+
+0: blank
+1: corner up
+2: corner down
+3: edge vert
+4: edge up
+7: edge down
+9: flat vert
+33: edge cave vert
+34: flat up
+39: edge cave up
+48: corner cave up
+49: flat down
+51: edge cave down
+53: corner cave down
+54: blank

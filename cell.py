@@ -100,8 +100,6 @@ class Node:
 
         vs = moddedPositions[list(nums)]
 
-        print(equiv, vs)
-
         ax.scatter(vs[:,0], vs[:,1], vs[:,2])
         # ax.set_xlabel('X-axis')
         # ax.set_ylabel('Y-axis')
@@ -134,4 +132,29 @@ class Node:
                     radius=0.01
                 )
 
+
+
+stateToClass = [-1 for _ in range(256)]
+stateToTrans = ['o' for _ in range(256)]
+classToStates = []
+
+for i in range(256):
+    node = Node(i)
+
+    equivs = node.equivalencies()
+
+    idens = ['', '1', '2', '3', 'x', 'x1', 'x2', 'x3', 'y', 'y1', 'y2', 'y3']
+    idens = range(12)
+
+    # Check if class already exists for this state
+    candidateClass = stateToClass[min(equivs)]
+    
+    # If class does not already exist for this state
+    if candidateClass == -1:
+        for equiv, iden in zip(equivs, idens):
+            if stateToClass[equiv] == -1 or iden < stateToTrans[equiv]:
+                stateToClass[equiv] = len(classToStates)
+                stateToTrans[equiv] = iden
+        classToStates.append(set(equivs))
+    
 
