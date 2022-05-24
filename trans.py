@@ -25,7 +25,7 @@ reflX = np.array([
     [0, 0, 1],
 ])
 
-reflections = [reflX @ transform for transform in transforms]
+reflections = [transform @ reflX for transform in transforms]
 transforms += reflections
 
 

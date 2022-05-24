@@ -2,8 +2,8 @@ from setup import *
 from cell import *
 
 if __name__ == '__main__':
-    visual = True
-    verbose = False
+    visual = False
+    verbose = True
 
 
     if visual:
@@ -12,11 +12,9 @@ if __name__ == '__main__':
         for index, transf in enumerate(stateToTrans):
             if transf == 0:
                 Node(index).visualize(fig, stateToClass[index])
-                print(index)
 
         plt.savefig("equivs.png")
     
-
     if verbose:
         perLine = 16
 
